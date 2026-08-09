@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
-{% block title%}
+{% block title %}
 Список задач
 {% endblock %}
+
 {% block content %}
 <h2>Список задач</h2>
-<button class="btn btn-primary mb-3" onclick="window.location.href='{% url 'task_create' %}'">Створити задачу</button>
-<div class="list-group">
-    {% for task in tasks %}
-        <a href="#" class="list-group-item list-group-item-action">{{ task.title }}</a>
-    {% endfor %}
-</div>
+<a href="{% url 'task_create' %}" type="button" class="btn btn-outline-success">Створити задачу</a>
+{% for task in tasks %}
+    <div class="list-group my-2">
+        <a href="{% url 'task_detail' task.pk %}" class="list-group-item list-group-item-action">{{ task.title }}
+        <span class="badge rounded-pill text-bg-primary">{{ task.get_status_display }}</span>
+        <span class="badge rounded-pill text-bg-info">{{ task.get_priority_display }}</span>
+        </a>
+    </div>
+{% endfor %}
 {% endblock %}

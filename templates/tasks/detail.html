@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Інформація про задачу{{ task.title }}
+{% endblock %}
+
+{% block content %}
+<h2> Інформація про {{ task.title }}</h2>
+<a href="#" type="button" class="btn btn-outline-warning">Редагувати</a>
+<a href="#" type="button" class="btn btn-outline-danger">Видалити</a>
+
+<ul class="list-group mt-2">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Опис:
+    <p>{{ task.description }}</p>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Статус:
+    <span class="badge text-bg-primary rounded-pill">{{ task.get_status_display }}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Пріоритет:
+    <span class="badge text-bg-primary rounded-pill">{{ task.get_priority_display }}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Дата завершення:
+    <span class="badge text-bg-primary rounded-pill">{{ task.due_date }}</span>
+ </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Власник:
+        <span class="badge text-bg-primary rounded-pill">{{ task.creator.last_name }} {{ task.creator.first_name }}</span>
+    </li>   
+</ul>
+{% endblock %}
