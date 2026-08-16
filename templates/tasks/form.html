@@ -8,6 +8,10 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Створити</button>
+    {% if object %}
+        <button type="submit" class="btn btn-primary">Зберегти</button>
+    {% else %}
+        <button type="submit" class="btn btn-primary">Створити</button>
+    {% endif %}
 </form>
 {% endblock %}

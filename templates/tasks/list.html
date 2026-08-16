@@ -5,7 +5,19 @@
 
 {% block content %}
 <h2>Список задач</h2>
-<a href="{% url 'task_create' %}" type="button" class="btn btn-outline-success">Створити задачу</a>
+<div class="d-flex align-items-end gap-2 mb-3">
+    <a href="{% url 'task_create' %}" class="btn btn-outline-success">
+        Створити задачу
+    </a>
+
+    <form method="GET" class="d-flex align-items-end gap-2">
+        {{ filter_form.as_p }}
+
+        <button type="submit" class="btn btn-outline-primary">
+            Фільтрувати
+        </button>
+    </form>
+</div>
 {% for task in tasks %}
     <div class="list-group my-2">
         <a href="{% url 'task_detail' task.pk %}" class="list-group-item list-group-item-action">{{ task.title }}

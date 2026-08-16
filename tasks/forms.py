@@ -13,3 +13,17 @@ class TaskForm(forms.ModelForm):
             'due_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'priority': forms.Select(attrs={'class': 'form-control'}),
         }
+
+class TaskFilterForm(forms.Form):
+    priority = forms.ChoiceField(
+        choices=[('', 'Всі')] + Task.PRIORITY_CHOICES,
+        label='Пріоритет',
+        required=False,
+        widget = forms.Select(attrs={'class': 'form-control'}),
+    )
+    status = forms.ChoiceField(
+        choices=[('', 'Всі')] + Task.STATUS_CHOICES,
+        label='Статус',
+        required=False,
+        widget = forms.Select(attrs={'class': 'form-control'}),
+    )
