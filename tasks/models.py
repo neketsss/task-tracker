@@ -33,3 +33,21 @@ class Task(models.Model):
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачі'
         ordering = ['-created_at']
+
+class Comment(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments', verbose_name='Задача')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='a_comments', verbose_name='Автор')
+    content = models.TextField(verbose_name='Текст')
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.author.last_name} {self.author.first_name} - {self.task.title}'
+
+
+    class Meta:
+        verbose_name = 'Коментар'
+        verbose_name_plural = 'Коментарі'
+        ordering = ['-created_at']
+   

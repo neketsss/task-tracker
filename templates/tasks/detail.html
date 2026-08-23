@@ -30,4 +30,22 @@
         <span class="badge text-bg-primary rounded-pill">{{ task.creator.last_name }} {{ task.creator.first_name }}</span>
     </li>   
 </ul>
+<h2> Коментарі </h2>
+{% for comment in comments %}
+<div class="card my-2">
+  <div class="card-body">
+    <figure>
+      <blockquote class="blockquote">
+        <p>{{ comment.content }}</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Автор: {{ comment.author.last_name }} {{ comment.author.first_name }} 
+      </figcaption>
+      <figcaption class="blockquote-footer">
+        Створено: {{ comment.created_at }}
+      </figcaption>
+    </figure>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
